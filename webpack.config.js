@@ -1,8 +1,19 @@
 const path = require("path");
 const webpack = require("webpack");
 
+/*
+Entry: (optional) it’s our main Javascript file where all of the application’s code gets imported
+Output: (optional) it’s the resulting Javascript file, bundled by Webpack
+Module and rules: it’s the place where you configure the loaders
+Plugins: it’s the place where you configure which plugins Webpack will use
+*/
+
+/*
+Benifits of using CSS loaders in webpack is that we can use bunch of css files for separate modules
+*/
+
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.js", /*webpack will look for this file*/
   mode: "development",
   module: {
     rules: [
@@ -22,7 +33,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/dist/",
-    filename: "bundle.js"
+    filename: "bundle.js" /*this is a convention to call bundled javascript as bundle.js*/
   },
   devServer: {
     contentBase: path.join(__dirname, "public/"),

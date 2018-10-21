@@ -9,6 +9,7 @@ class Navigation extends Component {
       super(props);
       this.routeToAboutMe = this.routeToAboutMe.bind(this);
       this.routeToEmail = this.routeToEmail.bind(this);
+      this.routeToPassword = this.routeToPassword.bind(this);
    }
 
    routeToAboutMe(e){
@@ -19,9 +20,13 @@ class Navigation extends Component {
      store.dispatch(push('/updateEmail'));
    }
 
+   routeToPassword(e){
+     store.dispatch(push('/updatePassword'));
+   }
+
   render() {
       if(this.props.userState.loggedIn){
-      	return(
+        return(
            <nav className="navbar navbar-expand-lg navbar-light bg">
   <a className="navbar-brand" href="#">Yp-App</a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +42,7 @@ class Navigation extends Component {
         <button onClick={() => { this.routeToEmail() }} className="nav-link">Email</button>
       </li>
       <li className="nav-item active">
-        <a className="nav-link" href="#">Password <span className="sr-only">(current)</span></a>
+        <button onClick={() => { this.routeToPassword() }} className="nav-link">Password</button>
       </li>
       <li className="nav-item active">
         <a className="nav-link" href="#">Location<span className="sr-only">(current)</span></a>
@@ -50,7 +55,7 @@ class Navigation extends Component {
         </div>
         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button>
         </nav>
-      	);
+        );
       }else{
      return(
            <nav className="navbar navbar-light bg">

@@ -45,7 +45,7 @@ const SignupStarted = () => ({
   type: SIGNUP_STARTED
 });
 
-const SignupSuccess = user => ({	
+const SignupSuccess = user => ({  
   type: SIGNUP_SUCCESS,
   payload: {
     ...user
@@ -144,5 +144,3 @@ const UpdateEmailFailure = error => ({
   type: UPDATE_EMAIL_FAILURE,
   payload: { error }
 });
-
-

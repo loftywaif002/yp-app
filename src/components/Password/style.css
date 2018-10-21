@@ -1,0 +1,61 @@
+.details-password{
+    background: #fff;
+    float: left;
+    border: 1px solid #ccc;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+.update_password{
+  padding-top: 2%;
+  width: 600px;
+  height: 350px;
+}
+
+.simple-text-form-password input[type=text], .simple-text-form-password input[type=password] {
+    height: 35px;
+    margin-bottom: 10px;
+    margin-left: 5%;
+}
+.simple-text-form-password label {
+    display: block;
+    padding-bottom: 6px;
+    margin-left: 5%;
+}
+.simple-text-form-password legend {
+    display: block;
+}
+fieldset {
+    float: left;
+    border: none;
+    font-size: 14pt;
+}
+fieldset p{
+  margin-left: 5%;
+  font-size: 16px;
+}
+fieldset dl {
+    padding-top: 8px;
+    font-size: 14px;
+}
+fieldset dl dt {
+    display: inline;
+    margin-left: 5%;
+}
+.success{
+  margin-left: 5%;    
+}
+.yellow-btn-password{
+    font-weight: 700;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-size: .75rem;
+    line-height: 1rem;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.3);
+    box-shadow: 0 1px 1px rgba(0,0,0,.3);
+    background-color: #fc0;
+    padding: 1ex 1.5em;
+    border: none;
+    color: #000!important;
+    text-align: center;
+    margin-left: 5%;
+}

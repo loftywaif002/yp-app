@@ -5,7 +5,7 @@ var session = require('express-session');
 var morgan = require('morgan');
 var User = require('./models/user');
 var cors = require('cors');
-
+var bcrypt = require('bcrypt');
 //Invoke an instance of express application.
 var app = express();
 app.use(cors());
@@ -98,7 +98,7 @@ app.route('/updatenames')
   });
 
 
-  // route for user name updates
+// route for user name updates
 app.route('/updateEmails')
     .get(sessionChecker, (req, res) => {
         
@@ -112,6 +112,32 @@ app.route('/updateEmails')
             }else {
                 user.updateAttributes({
                  email : updatedEmail
+                });
+                console.log(user.dataValues);
+                res.send(user.dataValues);
+            }
+        });
+  });
+
+
+// route for user password updates
+app.route('/updatePassword')
+    .get(sessionChecker, (req, res) => {
+        
+    })
+  .put((req, res) => {
+        var email = req.body.email;
+        var updatedPassword = req.body.newpassword;
+
+        User.findOne({ where: { email: email } }).then(function (user) {
+            if (!user) {
+                res.sendStatus(404);
+            }else {
+                const salt = bcrypt.genSaltSync();
+                var hashedPass = bcrypt.hashSync(updatedPassword, salt);
+                user.updateAttributes({
+                 salt: salt,   
+                 password : hashedPass
                 });
                 console.log(user.dataValues);
                 res.send(user.dataValues);

@@ -43,6 +43,10 @@ var User = sequelize.define('users', {
         type: Sequelize.STRING,
         allowNull: false
     },
+   salt: {
+        type: Sequelize.STRING,
+        allowNull: true
+   },
     zipcode: {
         type: Sequelize.INTEGER,
         allowNull: false
@@ -51,6 +55,7 @@ var User = sequelize.define('users', {
     hooks: {
       beforeCreate: (user) => {
         const salt = bcrypt.genSaltSync();
+        user.salt = salt;
         user.password = bcrypt.hashSync(user.password, salt);
       }
     },

@@ -8,10 +8,15 @@ class Navigation extends Component {
    constructor(props){
       super(props);
       this.routeToAboutMe = this.routeToAboutMe.bind(this);
+      this.routeToEmail = this.routeToEmail.bind(this);
    }
 
    routeToAboutMe(e){
       store.dispatch(push('/dashboard')); 
+   }
+
+   routeToEmail(e){
+     store.dispatch(push('/updateEmail'));
    }
 
   render() {
@@ -26,10 +31,10 @@ class Navigation extends Component {
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="nav nav-pills">
       <li className="nav-item active">
-        <button onClick={() => { this.routeToAboutMe() }} className="nav-link" >About Me</button>
+        <button onClick={() => { this.routeToAboutMe() }} className="nav-link">About Me</button>
       </li>
       <li className="nav-item active">
-        <a className="nav-link" href="#">Email <span className="sr-only">(current)</span></a>
+        <button onClick={() => { this.routeToEmail() }} className="nav-link">Email</button>
       </li>
       <li className="nav-item active">
         <a className="nav-link" href="#">Password <span className="sr-only">(current)</span></a>

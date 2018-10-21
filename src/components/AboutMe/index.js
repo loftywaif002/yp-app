@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from '../NavBar';
 import Footer from '../Footer';
 import './style.css';
-import axios from 'axios';
-var querystring = require('querystring');
+
 
 import {UpdateNames} from '../../actions/userActions';
 
@@ -13,7 +12,6 @@ class AboutMe extends Component{
 
 	constructor(props){
 		super(props);
-		console.log(this.props.userState.user[0].data);
 		this.updateNames = this.updateNames.bind(this);
 		this.updateFirstName = this.updateFirstName.bind(this);
 		this.updateLastName = this.updateLastName.bind(this);
@@ -27,13 +25,10 @@ class AboutMe extends Component{
 	}
 
 	checkForUpdate(){
-	 console.log("state values");
-     console.log(this.state.firstname);
-     console.log(this.state.lastname);
-     console.log("prop values");
-     console.log(this.props.userState.user[0].data.firstname);
-     console.log(this.props.userState.user[0].data.lastname);
+      this.setState({firstname: this.state.updatedFirstname});
+      this.setState({lastname: this.state.updatedLastName});
 	}
+
 
 	updateFirstName(e){
       let fname = e.target.value;
@@ -46,9 +41,6 @@ class AboutMe extends Component{
 	}
 
 	updateNames(event){
-		console.log(this.state.email);
-		console.log(this.state.updatedFirstname);
-		console.log(this.state.updatedLastName);
 	    const requestBody = {
             email:this.state.email,
             firstname: this.state.updatedFirstname,

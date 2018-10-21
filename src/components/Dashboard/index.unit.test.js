@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Login from './index.js';
+import Dashboard from './index.js';
+import store from '../../store';
 import {findBytestAttribute} from '../../../test/testUtils';
 
 
@@ -13,7 +14,7 @@ import {findBytestAttribute} from '../../../test/testUtils';
 * @returns {ShallowWrapper}
 */
 const setup = (props={}, state=null) => {
-	const wrapper = shallow(<Login {...props} />)
+	const wrapper = shallow(<Dashboard store={store} />)
 	if (state) wrapper.setState(state);
 	return wrapper;
 }

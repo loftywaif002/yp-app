@@ -51,7 +51,7 @@ var sessionChecker = (req, res, next) => {
 
 app.route('/signup')
     .get(sessionChecker, (req, res) => {
-        //res.send({"Signup Page"});
+        
     })
     .post((req, res) => {
     	console.log(`first name is ${req.body.firstname}`);
@@ -76,7 +76,7 @@ app.route('/signup')
 // route for user name updates
 app.route('/updatenames')
     .get(sessionChecker, (req, res) => {
-        //res.sendFile(__dirname + '/public/login.html');
+        
     })
   .put((req, res) => {
         var email = req.body.email;
@@ -90,6 +90,28 @@ app.route('/updatenames')
                 user.updateAttributes({
                  firstname : firstname,
                  lastname : lastname,
+                });
+                console.log(user.dataValues);
+                res.send(user.dataValues);
+            }
+        });
+  });
+
+
+  // route for user name updates
+app.route('/updateEmails')
+    .get(sessionChecker, (req, res) => {
+        
+    })
+  .put((req, res) => {
+        var email = req.body.email;
+        var updatedEmail = req.body.newemail;
+        User.findOne({ where: { email: email } }).then(function (user) {
+            if (!user) {
+                res.sendStatus(404);
+            }else {
+                user.updateAttributes({
+                 email : updatedEmail
                 });
                 console.log(user.dataValues);
                 res.send(user.dataValues);

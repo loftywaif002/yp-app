@@ -5,7 +5,10 @@ import {
   SIGNUP_FAILURE,
   UPDATE_NAME_SUCCESS,
   UPDATE_NAME_STARTED,
-  UPDATE_NAME_FAILURE
+  UPDATE_NAME_FAILURE,
+  UPDATE_EMAIL_SUCCESS, 
+  UPDATE_EMAIL_STARTED,
+  UPDATE_EMAIL_FAILURE
 } from '../actions/types.js';
 
 
@@ -57,7 +60,27 @@ export function userReducer(state = INITIAL_STATE, action) {
         loading: false,
         loggedIn: false,
         error: action.payload.error
-      };    
+      };
+      case UPDATE_EMAIL_STARTED:
+      return {
+        ...state,
+        loading: true
+      };
+    case UPDATE_EMAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        error: null,
+        user: [...state.user, action.payload]
+      };
+    case UPDATE_EMAIL_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: false,
+        error: action.payload.error
+      };        
     default:
       return state;
   }

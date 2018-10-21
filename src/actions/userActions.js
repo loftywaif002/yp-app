@@ -5,24 +5,24 @@ import {
   SIGNUP_FAILURE,
   UPDATE_NAME_SUCCESS,
   UPDATE_NAME_STARTED,
-  UPDATE_NAME_FAILURE
+  UPDATE_NAME_FAILURE,
+  UPDATE_EMAIL_SUCCESS, 
+  UPDATE_EMAIL_STARTED,
+  UPDATE_EMAIL_FAILURE 
 } from './types';
 import axios from 'axios';
 import { push } from 'connected-react-router'
 var querystring = require('querystring');
 
+/*
+  Function accepts a request body as a JSON object and serialize before making a PUT request to the server
+  to Register User in the Database
+*/
+
 export const Signup = (requestBody) => {
   return dispatch => {
     dispatch(SignupStarted());
     
-     //Making a POST REQUEST
-
- const config = {
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-   }
-}
-
 axios({
   method: 'post',
   url: 'http://localhost:5000/signup',
@@ -34,7 +34,6 @@ axios({
          dispatch(SignupSuccess(user));
          dispatch(push('/dashboard'));
    }).catch(error => {
-        this.setState({error});
         alert(`Error ${this.state.error}`);
         dispatch(SignupFailure(error));
     });
@@ -58,6 +57,11 @@ const SignupFailure = error => ({
   payload: { error }
 });
 
+/*
+  Function accepts a request body as a JSON object and serialize before making a PUT request to the server
+  to update user names
+*/
+
 export const UpdateNames = (requestBody) => {
   return dispatch => {
      dispatch(UpdateNameStarted());
@@ -74,7 +78,6 @@ export const UpdateNames = (requestBody) => {
           console.log(user);
           dispatch(UpdateNameSuccess(user));
      }).catch(error => {
-        this.setState({error});
         alert(`Error ${this.state.error}`);
         dispatch(UpdateNameFailure(error));
       });  
@@ -94,6 +97,51 @@ const UpdateNameSuccess = user => ({
 
 const UpdateNameFailure = error => ({
   type: UPDATE_NAME_FAILURE,
+  payload: { error }
+});
+
+
+/*
+  Function accepts a request body as a JSON object and serialize before making a PUT request to the server
+  to update user email address
+*/
+
+export const UpdateEmail = (requestBody) => {
+  return dispatch => {
+      dispatch(UpdateEmailStarted());
+      //Making a PUT REQUEST
+          axios({
+          method: 'put',
+          url: 'http://localhost:5000/updateEmails',
+          data: querystring.stringify(requestBody), // you are sending body instead
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }, 
+           }).then((user)=>{
+              console.log("from email component axios call");
+              console.log(user);
+              dispatch(UpdateEmailSuccess(user));
+           }).catch(error => {
+              alert(`Error ${this.state.error}`);
+              dispatch(UpdateEmailFailure(error));
+        }); 
+      
+  };
+};
+
+const UpdateEmailStarted = () => ({
+  type: UPDATE_EMAIL_STARTED
+});
+
+const UpdateEmailSuccess = user => ({  
+  type: UPDATE_EMAIL_SUCCESS,
+  payload: {
+    ...user
+  }
+});
+
+const UpdateEmailFailure = error => ({
+  type: UPDATE_EMAIL_FAILURE,
   payload: { error }
 });
 

@@ -10,6 +10,7 @@ class Navigation extends Component {
       this.routeToAboutMe = this.routeToAboutMe.bind(this);
       this.routeToEmail = this.routeToEmail.bind(this);
       this.routeToPassword = this.routeToPassword.bind(this);
+      this.routeToLocation = this.routeToLocation.bind(this);
    }
 
    routeToAboutMe(e){
@@ -22,6 +23,10 @@ class Navigation extends Component {
 
    routeToPassword(e){
      store.dispatch(push('/updatePassword'));
+   }
+
+   routeToLocation(e){
+     store.dispatch(push('/updateLocations'));
    }
 
   render() {
@@ -45,7 +50,7 @@ class Navigation extends Component {
         <button onClick={() => { this.routeToPassword() }} className="nav-link">Password</button>
       </li>
       <li className="nav-item active">
-        <a className="nav-link" href="#">Location<span className="sr-only">(current)</span></a>
+        <button onClick={() => { this.routeToLocation() }} className="nav-link">Locations</button>
       </li>
     </ul>
     <form className="form-inline my-2 my-lg-0">

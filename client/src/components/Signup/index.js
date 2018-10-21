@@ -3,12 +3,15 @@ import React, { Component} from "react";
 import Navbar from '../NavBar';
 import Footer from '../Footer';
 
-import {hot} from "react-hot-loader";
 import './style.css';
-
+import { connect } from 'react-redux';
 import fblogo from '../../assets/fb-logo.png';
 import googlelogo from '../../assets/google_plus.png';
+import ProgressBar from '../../components/LinearProgress';
+var querystring = require('querystring');
 
+
+import {Signup} from '../../actions/userActions';
 
 const INITIAL_STATE = {
     firstname:"",
@@ -40,8 +43,8 @@ class SignUp extends Component{
   }
 
   handleLastName(e){
-    let lasttname = e.target.value;
-    this.setState({lasttname});
+    let lastname = e.target.value;
+    this.setState({lastname});
   }
 
   //Handle email
@@ -91,30 +94,37 @@ class SignUp extends Component{
    }
  }
 
-  //submits the signup form
+//submits the signup form
 onSubmit(event){
   event.preventDefault();
   console.log("On Submit Clicked!");
   this.validateEmail(this.state.email);
   this.passwordMatched(this.state.password,this.state.retypedPass);
   const {
+      firstname,
+      lastname,
       email,
       password,
+      zipcode
     } = this.state;
-    
+   
+  const requestBody = {
+       firstname,
+       lastname,
+       email,
+       password,
+       zipcode
+    }
+  if(!this.state.emailError && !this.state.passwordError){
+       this.props.userSignUp(requestBody);
+    }
 }
-
- componentDidMount() {
-  //fetch data here
-  console.log("Component Did mount Called");
- }
-
-
 
   render(){
     return(
       <div data-test="component-login">
         <Navbar />
+        {this.props.userState.loading ? <ProgressBar />: null}
          <div id="content" className="registration_form">
             <div className="form-wrapper join">
               <section className="left">
@@ -144,15 +154,19 @@ onSubmit(event){
                  </label> 
                  <label>
                    <input onChange={(text)=>this.handleEmail(text)} autoCapitalize="off" placeholder="Email" className="error" type="email" />
+                   {this.state.emailError ? <span className="emailError" style={{color: "red"}}>Please Enter a valid email address</span> : ''}
                  </label>
                  <label>
-                   <input onChange={(e)=>this.handlePassword(e)} autoCapitalize="off" placeholder="Password" className="error" type="password" />
+                   <input onChange={(e)=>this.handlePassword(e)} autoCapitalize="off" placeholder="Password" className="error" type="password" autoComplete="new-password" />
+                   {this.state.passwordError ? <span className="passwordError" style={{color: "red"}}>Passwords did not match</span> : ''}
                  </label>
                  <label>
-                   <input onChange={(e)=>this.handleConfirmPassword(e)} autoCapitalize="off" placeholder="Password Confirmation" className="error" type="password" />
+                   <input onChange={(e)=>this.handleConfirmPassword(e)} autoCapitalize="off" placeholder="Password Confirmation" className="error" type="password" autoComplete="new-password"/>
+                   {this.state.passwordError ? <span className="passwordError" style={{color: "red"}}>Passwords did not match</span> : ''} 
                  </label>
+
                  <label>
-                   <input onChange={(e)=>this.handleZipcode(e)} autoCapitalize="off" className="zip_code error" placeholder="Zip Code" type="text" pattern="\d*" maxlength="5" />
+                   <input onChange={(e)=>this.handleZipcode(e)} autoCapitalize="off" className="zip_code error" placeholder="Zip Code" type="text" pattern="\d*" maxLength="5" />
                  </label>  
                   <label className="email_opt_in"></label>
                    <input  id="checkbox" name="email_opt_in" value="true" type="checkbox"/>
@@ -178,4 +192,14 @@ onSubmit(event){
   }
 }
 
-export default hot(module)(SignUp);
+const mapStateToProps = state => ({
+    userState: state.userState,
+});
+
+const mapDispatchToProps = dispatch => ({
+    userSignUp: (email,password) => {
+      dispatch(Signup(email,password));
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -190,3 +190,15 @@ a {
     color: #067ab4;
     text-decoration: none;
 }
+.emailError{
+  color: red;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-left: 1%;
+}
+.passwordError{
+  color: red;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-left: 1%;
+}

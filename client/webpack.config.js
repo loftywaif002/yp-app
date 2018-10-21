@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 /*
 Entry: (optional) it’s our main Javascript file where all of the application’s code gets imported
 Output: (optional) it’s the resulting Javascript file, bundled by Webpack
@@ -9,8 +10,14 @@ Plugins: it’s the place where you configure which plugins Webpack will use
 /*
 Benifits of using CSS loaders in webpack is that we can use bunch of css files for separate modules
 */
+const VENDOR_LIBS = [
+  'react', 'redux', 'react-redux', 'react-dom'
+];
 module.exports = {
-  entry: "./src/index.js", /*webpack will look for this file*/
+  entry: {
+    bundle: './src/index.js', /*webpack will look for this file*/
+    vendor: VENDOR_LIBS
+  }, 
   mode: "development",
   module: {
     rules: [
@@ -39,8 +46,8 @@ module.exports = {
   resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
-    filename: "bundle.js" /*this is a convention to call bundled javascript as bundle.js*/
+    publicPath: "/",
+    filename: 'bundle.js'  /*code splitted based on vendor code and bundle*/
   },
   devServer: {
     contentBase: path.join(__dirname, "public/"),
@@ -48,5 +55,9 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [ new webpack.HotModuleReplacementPlugin(),
+  new HtmlWebpackPlugin({
+      template: 'public/index.html'
+    })
+  ]
 };

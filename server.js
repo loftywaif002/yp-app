@@ -65,13 +65,38 @@ app.route('/signup')
         })
         .then(user => {
             req.session.user = user.dataValues;
-            res.send(user.dataValues.firstname);
+            res.send(user.dataValues);
             console.log(user.dataValues.firstname);
         })
         .catch(error => {
             res.redirect('/signup');
         });
-    });
+});
+
+// route for user name updates
+app.route('/updatenames')
+    .get(sessionChecker, (req, res) => {
+        //res.sendFile(__dirname + '/public/login.html');
+    })
+  .put((req, res) => {
+        var email = req.body.email;
+         var firstname = req.body.firstname;
+          var lastname = req.body.lastname;
+
+        User.findOne({ where: { email: email } }).then(function (user) {
+            if (!user) {
+                res.sendStatus(404);
+            }else {
+                user.updateAttributes({
+                 firstname : firstname,
+                 lastname : lastname,
+                });
+                console.log(user.dataValues);
+                res.send(user.dataValues);
+            }
+        });
+  });
+
 
 
 /*Authorization/Database access=>Code goes here**Important=Above the block of code below*/

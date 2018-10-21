@@ -2,7 +2,10 @@ import {
   USER_SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_STARTED,
-  SIGNUP_FAILURE
+  SIGNUP_FAILURE,
+  UPDATE_NAME_SUCCESS,
+  UPDATE_NAME_STARTED,
+  UPDATE_NAME_FAILURE
 } from '../actions/types.js';
 
 
@@ -35,6 +38,26 @@ export function userReducer(state = INITIAL_STATE, action) {
         loggedIn: false,
         error: action.payload.error
       };
+    case UPDATE_NAME_STARTED:
+      return {
+        ...state,
+        loading: true
+      };
+    case UPDATE_NAME_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        error: null,
+        user: [...state.user, action.payload]
+      };
+    case UPDATE_NAME_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: false,
+        error: action.payload.error
+      };    
     default:
       return state;
   }

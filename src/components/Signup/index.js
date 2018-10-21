@@ -197,8 +197,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    userSignUp: (email,password) => {
-      dispatch(Signup(email,password));
+    userSignUp: (requestBody) => {
+      dispatch(Signup(requestBody));
     },
 });
 

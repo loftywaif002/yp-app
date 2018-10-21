@@ -4,6 +4,7 @@ import Navbar from '../NavBar';
 import Footer from '../Footer';
 import {hot} from "react-hot-loader";
 import './style.css';
+import AboutMe from '../AboutMe';
 
 const INITIAL_STATE = {
 
@@ -19,6 +20,7 @@ class Dashboard extends Component{
     return(
        <div data-test="component-dashboard">
          <Navbar />
+           <AboutMe />
          <Footer />
        </div>
      );

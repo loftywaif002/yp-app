@@ -78,7 +78,6 @@ class PasswordComponent extends Component{
 	render(){
       return(
          <div data-test="component-password">
-       <Navbar />
             <div className="details-password simple-text-form-password">
        <div className="update_password">
           <fieldset>
@@ -98,8 +97,7 @@ class PasswordComponent extends Component{
               </div>
          </fieldset>
         </div>
-       </div>
-         <Footer />
+        </div>
        </div>
       );
    }

@@ -19,9 +19,7 @@ class Dashboard extends Component{
   render(){
     return(
        <div data-test="component-dashboard">
-         <Navbar />
            <AboutMe />
-         <Footer />
        </div>
      );
   }

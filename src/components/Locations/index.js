@@ -96,7 +96,6 @@ class LocationComponent extends Component{
    render(){
      return(
      	   <div data-test="component-location">
-     	     <Navbar />
      	         <div className="details-location simple-text-form-location">
        <div className="update_location">
           <fieldset>
@@ -129,8 +128,7 @@ class LocationComponent extends Component{
          </fieldset>
         </div>
        </div>
-     	     <Footer />
-     	   </div>
+     	</div>
      	);
     }
 }     	

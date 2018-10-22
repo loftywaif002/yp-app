@@ -78,7 +78,6 @@ class EmailComponent extends Component{
    render(){
     return(
        <div data-test="component-email">
-       <Navbar />
             <div className="details-email simple-text-form-email">
        <div className="update_email">
           <fieldset>
@@ -103,7 +102,6 @@ class EmailComponent extends Component{
          </fieldset>
         </div>
        </div>
-         <Footer />
        </div>
      );
    }

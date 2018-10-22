@@ -24,14 +24,11 @@ class SearchComponent extends Component{
     }
     return(
         <div data-test="component-search">
-          <Navbar />
-
-           <div className="gray"></div>
+           <div className="gray">Search Results</div>
            {this.state.resultData.length > 0 ? 
             <div>
             {this.state.resultData[0].data.map((item)=>{
                return(
-
                   <div className="result-box">
                   <p>Business: {item.business_name}</p>
                   <p>Address: {item.address}</p>
@@ -48,8 +45,6 @@ class SearchComponent extends Component{
                  </div>
             </div>
           }
-            
-          <Footer /> 
         </div>
       );
    }

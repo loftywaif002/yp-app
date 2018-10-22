@@ -123,7 +123,6 @@ onSubmit(event){
   render(){
     return(
       <div data-test="component-login">
-        <Navbar />
         {this.props.userState.loading ? <ProgressBar />: null}
          <div id="content" className="registration_form">
             <div className="form-wrapper join">
@@ -186,7 +185,6 @@ onSubmit(event){
               </section>
             </div>
          </div>
-        <Footer />
       </div>
     );
   }

@@ -8,7 +8,13 @@ import {
   UPDATE_NAME_FAILURE,
   UPDATE_EMAIL_SUCCESS, 
   UPDATE_EMAIL_STARTED,
-  UPDATE_EMAIL_FAILURE
+  UPDATE_EMAIL_FAILURE,
+  QUERY_STARTED, 
+  QUERY_SUCCESS,
+  QUERY_FAILURE,
+  LOGOUT_STARTED,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE 
 } from '../actions/types.js';
 
 
@@ -16,9 +22,11 @@ const INITIAL_STATE = {
   loading: false,
   loggedIn: false,
   user: [],
+  result: [],
+  queryFetched: false,
   error: null
 };
-
+/*Update loggedIn var later*/
 export function userReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SIGNUP_STARTED:
@@ -58,7 +66,7 @@ export function userReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        loggedIn: false,
+        loggedIn: true,
         error: action.payload.error
       };
       case UPDATE_EMAIL_STARTED:
@@ -78,9 +86,52 @@ export function userReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        loggedIn: false,
+        loggedIn: true,
         error: action.payload.error
-      };        
+      };
+      case QUERY_STARTED:
+      return {
+        ...state,
+        loading: true
+      };
+      case QUERY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        queryFetched: true,
+        error: null,
+        result: [...state.result, action.payload]
+      };
+      case QUERY_FAILURE:
+       return {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        error: action.payload.error
+      };
+      case LOGOUT_STARTED:
+       return {
+        ...state,
+        loading: true
+      };
+      case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: false,
+        user: [],
+        result: [],
+        queryFetched: false,
+        error: null
+      };
+      case LOGOUT_FAILURE:
+        return {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        error: action.payload.error
+      };
     default:
       return state;
   }

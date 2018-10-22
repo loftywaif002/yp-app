@@ -2,7 +2,11 @@ import React, { Component} from "react";
 import './style.css';
 import { connect } from 'react-redux';
 import store  from '../../store';
-import { push } from 'connected-react-router';
+import { push , replace} from 'connected-react-router';
+import axios from 'axios';
+var querystring = require('querystring');
+
+import {QueryDatabase, UserLogOut} from '../../actions/userActions';
 
 class Navigation extends Component {
    constructor(props){
@@ -11,22 +15,62 @@ class Navigation extends Component {
       this.routeToEmail = this.routeToEmail.bind(this);
       this.routeToPassword = this.routeToPassword.bind(this);
       this.routeToLocation = this.routeToLocation.bind(this);
+      this.getData= this.getData.bind(this);
+      this.logout = this.logout.bind(this);
+      this.state = {
+        query: "",
+        business: [],
+        success: false
+      }
    }
 
    routeToAboutMe(e){
-      store.dispatch(push('/dashboard')); 
+      store.dispatch(replace('/dashboard')); 
    }
 
    routeToEmail(e){
-     store.dispatch(push('/updateEmail'));
+     store.dispatch(replace('/updateEmail'));
    }
 
    routeToPassword(e){
-     store.dispatch(push('/updatePassword'));
+     store.dispatch(replace('/updatePassword'));
    }
 
    routeToLocation(e){
-     store.dispatch(push('/updateLocations'));
+     store.dispatch(replace('/updateLocations'));
+   }
+
+   handleQuery(e){
+     e.preventDefault();
+     let query = e.target.value;
+     this.setState({query});
+   }
+
+   getData(e){
+      console.log("get data called!");
+      
+      const requestBody = {
+            query: this.state.query
+          }
+
+    this.props.businessQuery(requestBody);    
+    
+   }
+
+   logout(e){
+    console.log("Log Out Clicked");
+    this.props.logout();
+    /*
+      axios({
+           method: 'post',
+           url: 'http://localhost:5000/logout'
+           }).then((user)=>{
+               console.log("successfully logged out");
+               store.dispatch(push('/')); 
+           }).catch(error => {
+              console.log(error);
+        }); 
+     */   
    }
 
   render() {
@@ -53,12 +97,12 @@ class Navigation extends Component {
         <button onClick={() => { this.routeToLocation() }} className="nav-link">Locations</button>
       </li>
     </ul>
-    <form className="form-inline my-2 my-lg-0">
-      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div className="form-inline my-2 my-lg-0 custom-margin">
+       <input onChange={(e)=>this.handleQuery(e)}  className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+       <button onClick={() => { this.getData() }} className="nav-link">Search</button>
+    </div>
         </div>
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button>
+        <button onClick={() => { this.logout() }} className="btn btn-outline-success my-2 my-sm-0" >Log Out</button>
         </nav>
         );
       }else{
@@ -75,4 +119,13 @@ const mapStateToProps = state => ({
     userState: state.userState,
 });
 
-export default connect(mapStateToProps, null)(Navigation);
+const mapDispatchToProps = dispatch => ({
+    businessQuery: (requestBody) => {
+      dispatch(QueryDatabase(requestBody));
+    },
+    logout: ()=>{ dispatch(UserLogOut());
+    }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

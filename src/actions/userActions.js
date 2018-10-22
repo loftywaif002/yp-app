@@ -8,7 +8,13 @@ import {
   UPDATE_NAME_FAILURE,
   UPDATE_EMAIL_SUCCESS, 
   UPDATE_EMAIL_STARTED,
-  UPDATE_EMAIL_FAILURE 
+  UPDATE_EMAIL_FAILURE,
+  QUERY_STARTED, 
+  QUERY_SUCCESS,
+  QUERY_FAILURE,
+  LOGOUT_STARTED,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE 
 } from './types';
 import axios from 'axios';
 import { push } from 'connected-react-router'
@@ -34,7 +40,6 @@ axios({
          dispatch(SignupSuccess(user));
          dispatch(push('/dashboard'));
    }).catch(error => {
-        alert(`Error ${this.state.error}`);
         dispatch(SignupFailure(error));
     });
 
@@ -78,7 +83,6 @@ export const UpdateNames = (requestBody) => {
           console.log(user);
           dispatch(UpdateNameSuccess(user));
      }).catch(error => {
-        alert(`Error ${this.state.error}`);
         dispatch(UpdateNameFailure(error));
       });  
   };
@@ -122,7 +126,6 @@ export const UpdateEmail = (requestBody) => {
               console.log(user);
               dispatch(UpdateEmailSuccess(user));
            }).catch(error => {
-              alert(`Error ${this.state.error}`);
               dispatch(UpdateEmailFailure(error));
         }); 
       
@@ -142,5 +145,82 @@ const UpdateEmailSuccess = user => ({
 
 const UpdateEmailFailure = error => ({
   type: UPDATE_EMAIL_FAILURE,
+  payload: { error }
+});
+
+
+/*
+  Function accepts a request body as a JSON object and serialize before making a PUT request to the server
+  to QUERY DATABASE FOR CUSTOM SEARCH PARAMETER
+*/
+
+export const QueryDatabase = (requestBody) => {
+  return dispatch => {
+       dispatch(QueryStarted());
+      //Making a post using query
+      axios({
+           method: 'post',
+           url: 'http://localhost:5000/query',
+           data: querystring.stringify(requestBody), // you are sending body instead
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }, 
+           }).then((user)=>{
+              dispatch(QuerySuccess(user));
+           }).catch(error => {
+              dispatch(QueryFailure(error));
+        });   
+      
+  };
+};
+
+
+const QueryStarted = () => ({
+  type: QUERY_STARTED
+});
+
+const QuerySuccess = user => ({  
+  type: QUERY_SUCCESS,
+  payload: {
+    ...user
+  }
+});
+
+const QueryFailure = error => ({
+  type: QUERY_FAILURE,
+  payload: { error }
+});
+
+
+/*
+  User LOGOUT ACTION
+*/
+export const UserLogOut = (requestBody) => {
+  return dispatch => {
+       dispatch(LogOutStarted());
+       axios({
+           method: 'post',
+           url: 'http://localhost:5000/logout'
+           }).then(()=>{
+               console.log("successfully logged out");
+               dispatch(LogOutSuccess());
+               dispatch(push('/')); 
+           }).catch(error => {
+              console.log(error);
+              dispatch(LogOutFailure(error));
+        }); 
+   };
+};
+
+const LogOutStarted = () => ({
+  type: LOGOUT_STARTED
+});
+
+const LogOutSuccess = () => ({  
+  type: LOGOUT_SUCCESS
+});
+
+const LogOutFailure = error => ({
+  type: LOGOUT_FAILURE,
   payload: { error }
 });

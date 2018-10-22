@@ -6,6 +6,8 @@ var morgan = require('morgan');
 var User = require('./models/user');
 var cors = require('cors');
 var bcrypt = require('bcrypt');
+var Sequelize = require('sequelize');
+
 //Invoke an instance of express application.
 var app = express();
 app.use(cors());
@@ -145,6 +147,70 @@ app.route('/updatePassword')
         });
   });
 
+// route for user password updates
+app.route('/updateLocation')
+    .get(sessionChecker, (req, res) => {
+        //Implement GET
+    })
+  .put((req, res) => {
+        var email = req.body.email;
+        var address = req.body.address;
+        var city = req.body.city;
+        var state = req.body.state;
+        var zipcode = req.body.zipcode;
+        var phone = req.body.phone;
+        var website = req.body.website;
+        var serviceArea = req.body.serviceArea;
+        var businessName = req.body.businessName;
+
+        User.findOne({ where: { email: email } }).then(function (user) {
+            if (!user) {
+                res.sendStatus(404);
+            }else {
+                user.updateAttributes({
+                  address: address,
+                  city: city,
+                  state: state,
+                  zipcode: zipcode,
+                  phone : phone,
+                  website : website,
+                  service_areas: serviceArea,
+                  business_name : businessName
+                });
+                console.log(user.dataValues);
+                res.send(user.dataValues);
+            }
+        });
+  });
+
+// route for bussiness name query
+app.route('/query')
+    .get((req, res) => {
+         console.log(req);
+    })
+  .post((req, res) => {
+     //post implementation
+     var query = req.body.query;
+     User.findAll({ where: { business_name: { [Sequelize.Op.like]: '%'+query+'%' } } }).then(function (user) {
+            if (!user) {
+                res.sendStatus(404);
+            }else{
+                console.log(user);
+                res.json({"user": user });
+            }
+        });
+  });
+
+// yp route for User Logout
+
+app.post('/logout', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.clearCookie('user_sid');
+        res.redirect('/');
+    } else {
+        res.redirect('/login');
+    }
+});
 
 
 /*Authorization/Database access=>Code goes here**Important=Above the block of code below*/

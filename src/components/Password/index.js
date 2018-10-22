@@ -51,14 +51,13 @@ class PasswordComponent extends Component{
 
 
  updatePassword(event){
- 	  console.log("update password clicked");
     this.passwordMatched(this.state.updatedPassword,this.state.confirmPassword);
     if(!this.state.passwordError){
       const requestBody = {
             email: this.state.email,
             newpassword:this.state.updatedPassword
           }
-        //Making a PUT REQUEST
+        //Making a PUT REQUEST   Will be in redux action
           axios({
            method: 'put',
            url: 'http://localhost:5000/updatePassword',

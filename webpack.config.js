@@ -55,9 +55,13 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true
   },
-  plugins: [ new webpack.HotModuleReplacementPlugin(),
+  plugins: [ 
+  new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
       template: 'public/index.html'
+    }),
+  new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ]
 };

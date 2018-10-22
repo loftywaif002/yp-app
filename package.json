@@ -4,9 +4,9 @@
   "description": "take-home-project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development",
+    "build": "NODE_ENV=production npm run clean && webpack -p",
     "clean": "rimraf dist",
-    "start": "webpack-dev-server --hot --mode development",
+    "start": "node server.js",
     "test": "jest --watch"
   },
   "repository": {

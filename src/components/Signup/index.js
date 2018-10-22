@@ -178,9 +178,6 @@ onSubmit(event){
                      We value your privacy, and will not post to your wall without your permission.
                   </p>
                   <input className="track btn yellow" value="Join YP!" type="submit" disabled={this.state.passwordError}/>
-                  <p className="point-of-entry desktop-only">
-                    <a className="track" href="/login">Already have an account? Sign in »</a>
-                  </p>
                 </form> 
               </section>
             </div>

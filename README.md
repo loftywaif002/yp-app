@@ -5,6 +5,10 @@
 4. npm run start
 5. App should be running on http://localhost:5000
 
+### Requirements
+1. PostgresDB must be installed locally and database should be created first
+2. Create database Ex: psql -U postgres -c 'DROP DATABASE "yp-database"' from terminal
+3. Database connection can be changed in models/user.js if needed
 
 ### Technology User
  FrontEnd: React.js  16.5.2

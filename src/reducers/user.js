@@ -98,7 +98,6 @@ export function userReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        loggedIn: true,
         queryFetched: true,
         error: null,
         result: [...state.result, action.payload]

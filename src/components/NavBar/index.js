@@ -97,6 +97,15 @@ class Navigation extends Component {
      return(
            <nav className="navbar navbar-light bg">
             <span className="navbar-brand mb-0 h1"><b>Yp-App</b></span>
+            <ul className="nav nav-pills">
+             <li className="nav-item active">
+               <button className="nav-link" onClick={() => { store.dispatch(push('/results')) }}>Find Business</button>
+             </li>
+            </ul>
+            <div className="form-inline my-2 my-lg-0 custom-margin">
+              <input onChange={(e)=>this.handleQuery(e)}  className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+              <button onClick={() => { this.getData() }} className="nav-link new">Search</button>
+            </div>
            </nav>
         );
       }

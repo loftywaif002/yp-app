@@ -16,3 +16,7 @@
  <img width="80%" src="https://preview.ibb.co/ixrdt0/screen-shot-1.png" />
  <br />
  <img width="80%" src="https://preview.ibb.co/jDUnmL/screen-shot-2.png" />
+ <br />
+ <img width="80%" src="https://preview.ibb.co/kPCzi0/screen-shot-3.png" />
+ <br/>
+ <img width="80%" src="https://preview.ibb.co/hOEZGL/screen-shot-4.png" />

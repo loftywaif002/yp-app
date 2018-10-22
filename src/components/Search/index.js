@@ -43,11 +43,9 @@ class SearchComponent extends Component{
             </div>
             : 
             <div>
-              return(
                  <div className="result-box">
                    <p>No results</p>
                  </div>
-              );
             </div>
           }
             

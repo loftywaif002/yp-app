@@ -4,35 +4,65 @@ import Navbar from '../NavBar';
 import Footer from '../Footer';
 import './style.css';
 
-var querystring = require('querystring');
-import axios from 'axios';
+
 
 
 class SearchComponent extends Component{
-	constructor(props){
-		super(props);
-    this.getData = this.getData.bind(this);
-      this.state = {
-            query: ""
-         }
-	}
+   constructor(props){
+     super(props);
+     this.state = {
+        resultData: [],
+         flag: true
+     }
 
- getData(e){
-    let q = this.refs.search.value;
-    console.log(q);
- }
+   }
   
+   render(){
+    console.log("rendering resultData");
+    if(this.state.resultData.length > 0){
+      console.log(this.state.resultData[0].data);
+    }
+    return(
+        <div data-test="component-search">
+          <Navbar />
 
-	redner(){
-	    return(
-           <div data-test="component-search">
-              <form className="form-inline my-2 my-lg-0 custom-margin">
-               <input ref="search" className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={() => { this.getData() }}>Search</button>
-               </form>
-           </div>
-		);
-	}
+           <div className="gray"></div>
+           {this.state.resultData.length > 0 ? 
+            <div>
+            {this.state.resultData[0].data.map((item)=>{
+               return(
+
+                  <div className="result-box">
+                  <p>Business: {item.business_name}</p>
+                  <p>Address: {item.address}</p>
+                  <p>Service Areas: {item.service_areas}</p>
+                  <p>Phone: {item.phone}</p>
+                  </div>
+               );
+            })}
+            </div>
+            : 
+            <div>
+              return(
+                 <div className="result-box">
+                   <p>No results</p>
+                 </div>
+              );
+            </div>
+          }
+            
+          <Footer /> 
+        </div>
+      );
+   }
+
+    componentDidUpdate(){
+      console.log("componentDidUpdate called");
+      console.log(this.props.userState.queryFetched);
+      if(this.props.userState.queryFetched && this.state.flag){
+         this.setState({resultData:this.props.userState.result, flag: false});
+      }
+    }
 }
 
 const mapStateToProps = state => ({

@@ -8,6 +8,7 @@ import AboutMe from './components/AboutMe';
 import Email from './components/Email';
 import Password from './components/Password';
 import Locations from './components/Locations';
+import Search from  './components/Search';
 const Main = () => (
        <Switch>
          <Route exact path='/' render={() => (<div><Signup /></div>)}></Route>
@@ -16,6 +17,7 @@ const Main = () => (
          <Route exact path='/updateEmail' render={() => (<div><Email  /></div>)}></Route>
          <Route exact path='/updatePassword' render={() => (<div><Password /></div>)}></Route>
          <Route exact path='/updateLocations' render={() => (<div><Locations /></div>)}></Route>
+         <Route exact path='/results' render={() => (<div><Search /></div>)}></Route>
        </Switch>
 );
 

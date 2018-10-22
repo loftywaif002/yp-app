@@ -166,6 +166,8 @@ export const QueryDatabase = (requestBody) => {
             'Content-Type': 'application/x-www-form-urlencoded'
           }, 
            }).then((user)=>{
+              console.log("redux mehtod");
+              console.log(user);
               dispatch(QuerySuccess(user));
            }).catch(error => {
               dispatch(QueryFailure(error));

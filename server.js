@@ -195,8 +195,10 @@ app.route('/query')
             if (!user) {
                 res.sendStatus(404);
             }else{
-                console.log(user);
-                res.json({"user": user });
+                var jsonString = JSON.stringify(user);
+                var obj = JSON.parse(jsonString);
+                console.log(obj);
+                res.json(obj);
             }
         });
   });

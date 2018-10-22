@@ -47,30 +47,15 @@ class Navigation extends Component {
    }
 
    getData(e){
-      console.log("get data called!");
-      
       const requestBody = {
             query: this.state.query
           }
-
     this.props.businessQuery(requestBody);    
-    
    }
 
    logout(e){
     console.log("Log Out Clicked");
     this.props.logout();
-    /*
-      axios({
-           method: 'post',
-           url: 'http://localhost:5000/logout'
-           }).then((user)=>{
-               console.log("successfully logged out");
-               store.dispatch(push('/')); 
-           }).catch(error => {
-              console.log(error);
-        }); 
-     */   
    }
 
   render() {
@@ -96,6 +81,9 @@ class Navigation extends Component {
       <li className="nav-item active">
         <button onClick={() => { this.routeToLocation() }} className="nav-link">Locations</button>
       </li>
+       <li className="nav-item active">
+         <button className="nav-link" onClick={() => { store.dispatch(replace('/results')) }}>Find Business</button>
+       </li>
     </ul>
     <div className="form-inline my-2 my-lg-0 custom-margin">
        <input onChange={(e)=>this.handleQuery(e)}  className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />

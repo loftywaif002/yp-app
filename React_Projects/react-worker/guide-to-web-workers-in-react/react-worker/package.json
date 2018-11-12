@@ -1,0 +1,21 @@
+{
+  "name": "reactworker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "faker": "^4.1.0",
+    "react": "^16.4.1",
+    "react-countdown-clock": "^2.4.0",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4",
+    "request": "^2.88.0",
+    "worker-farm": "^1.6.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

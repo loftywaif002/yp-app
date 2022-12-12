@@ -1,0 +1,155 @@
+{
+  "headerSectionData": {
+    "navBarItemTitles": {
+      "Home": "Home",
+      "AboutUs": "About Us",
+      "Projects": "Projects",
+      "Services": "Services",
+      "Contact": "Contact"
+    },
+    "languages": { "English": "English", "Arabic": "العربية" }
+  },
+  "welcomeSectionData": {
+    "heading": "Have a business idea ? Let us bring it to reality!",
+    "content": "It is our values what define us and make us unique. At Tahseens, we strongly believe that your success is ours. Thus, we have our dedicated team to handle your project to ensure we fulfill all of your project requirements and deliver on time.",
+    "btnText": "Request project estimation"
+  },
+  "aboutDataJSON": {
+    "headingSpan": "about",
+    "heading": "Our vision started in silicon valley, california.",
+    "headingText": "Our vision is to be a part of every successful business story in the globe",
+    "headingTextTwo": "Our Mission is to help entrepreneurs, startups and firms reaching their business goals by providing the ultimate and optimal business and software solutions.",
+    "headingTextThree": "Confidentiality, Integrity, Transparency, Quality, Efficiency, Flexibility, Customer Satisfaction, and Punctuality are our top values.",
+    "aboutThumb": "/img/about.png"
+  },
+  "worksSection": {
+    "imgData": [
+      {
+        "image": "/img/discover.png"
+      },
+      {
+        "image": "/img/design.png"
+      },
+      {
+        "image": "/img/build.png"
+      },
+      {
+        "image": "/img/deliver.png"
+      }
+    ],
+    "workData": [
+      {
+        "linkClass": "pager-item active",
+        "title": "Discover",
+        "text": "We shape brands by applying in-depth research to challenge assumptions at every turn"
+      },
+      {
+        "linkClass": "pager-item",
+        "title": "Design",
+        "text": "We simplify design process as much as possible to build better user experience for the end user."
+      },
+      {
+        "linkClass": "pager-item",
+        "title": "Build",
+        "text": "We try to be up to date with modern technologies creating flexible and scalable business-driven solutions."
+      },
+      {
+        "linkClass": "pager-item",
+        "title": "Deliver",
+        "text": "We know time is of the essence and thats why we take project deadlines seriously"
+      }
+    ]
+  },
+  "servicesData": {
+    "headingSpan": "Services",
+    "heading": "Our Services",
+    "headingText": "We have a solution for every challenge. This is what we promise. Our strategists, designers, and developers, consistently strive to deliver the optimal experience at the right time. With a demonstrated methodology and procedure, you get what you need — on schedule and budget.",
+    "featuresData": [
+      {
+        "id": 1,
+        "featureImage": "/img/feature_icon_1.svg",
+        "featuretitle": "Business idea validation",
+        "featureText": "Strategy, and depth research to have a better understanding of your project idea, and to what extent it can be practical."
+      },
+      {
+        "id": 2,
+        "featureImage": "/img/feature_icon_2.svg",
+        "featuretitle": "Brand logos design",
+        "featureText": "A logo is a part of the building blocks your company needs to build a strong brand identity."
+      },
+      {
+        "id": 3,
+        "featureImage": "/img/feature_icon_3.svg",
+        "featuretitle": "Design, Mockup, UI/UX",
+        "featureText": "Mockup allows you to experiment with the visual side of the product to see what looks the best"
+      },
+      {
+        "id": 4,
+        "featureImage": "/img/feature_icon_4.svg",
+        "featuretitle": "Developing apps on web and mobile platforms.",
+        "featureText": "For this stage, we use different for software technologies based on project requirements and what the clients desires to use for their project."
+      }
+    ]
+  },
+  "projectData": {
+    "heading": "Projects",
+    "headingText": "We take our partners and clients project objectives seriously and turn them into innovative and successful products, and solutions. "
+  },
+  "subscriptionSection": {
+    "heading": "Schedule a call with us",
+    "content": "Let's talk!",
+    "btnText": "Get Started"
+  },
+  "contactSectionData": {
+    "heading": "Request your project estimation",
+    "headingText": "We understand all software solutions so let us know what technology solution you desire. In addition, let us know what type of services you are looking for and What you would need.",
+    "Name": "Name",
+    "FirmName": "Firm Name",
+    "BestWayToReach": "Best way to reach you",
+    "call": "Call",
+    "email": "Email",
+    "phone": "phone",
+    "howCanWeServeYou": " What can we do for you",
+    "sendMessage": "Send Message"
+  },
+  "footerData": {
+    "image": "/img/artics-transparent-logo.png",
+    "text": "For inquiry and help, please contact our team at",
+    "email": "support@artics.io",
+    "phone_text_1": "KSA: +966 53 0330035",
+    "phone_text_2": "KSA: +966 54 7060080",
+    "phone_text_3": "",
+    "social_media_text": "Follow us on social media",
+    "linkText_1": "Useful Links",
+    "copyrightText": "Copyrights 2021 Artics Inc. All rights reserved.",
+    "iconList": [
+      {
+        "id": 1,
+        "link": "facebook",
+        "iconClass": "fab fa-facebook-f"
+      },
+      {
+        "id": 2,
+        "link": "twitter",
+        "iconClass": "fab fa-twitter"
+      }
+    ],
+    "footerList_1": [
+      {
+        "id": 1,
+        "text": "About Us",
+        "goTo": "#aboutUs"
+      },
+      {
+        "id": 2,
+        "text": "Projects",
+        "goTo": "#screenshots"
+      },
+      {
+        "id": 3,
+        "text": "Services",
+        "goTo": "#services"
+      }
+    ]
+  }
+}
